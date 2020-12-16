@@ -22,10 +22,10 @@ def cycle(iterable):
     cycle(('A')) -> A, A, A, ...
     """
     while True:
-        for el in iterable:
-            yield el
+        for item in iterable:
+            yield item
 
-def repeat(value, repeat=1, depth=0):
+def repeat(value, repeats=1, depth=0):
     """
     Return endless iterator with
     values which are repeated a 
@@ -46,7 +46,7 @@ def product(*iterables):
     of all elements.
 
     Usage:
-
+    ...
     """
     pass
 
@@ -54,6 +54,9 @@ def permutations(iterable, length=len(iterable)):
     """
     Return all permutations of iterable.
     Order of elements is important.
+
+    Usage:
+    ...
     """
     pass
 
@@ -62,6 +65,9 @@ def combinations(iterable, n: int):
     Return all combinations of iterable with n elements.
     No matter what order of elements it is.
     Elements are sorted.
+
+    Usage:
+    ...
     """
     pass
 
@@ -70,5 +76,8 @@ def combinations_with_replacement(iterable, n: int):
     Return all combinations of iterable with n elements.
     Elements could be repeated.
     Elements are sorted.
+
+    Usage:
+    ...
     """
     pass
