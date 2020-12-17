@@ -9,9 +9,12 @@ def count(start=0, step=1):
     """
     yield start
 
-    while True:
-        yield start + step
-        start += step
+    if step == 0:
+        return start
+    else:
+        while True:
+            yield start + step
+            start += step
 
 def cycle(iterable):
     """
@@ -23,9 +26,12 @@ def cycle(iterable):
     cycle(['ABC']) -> A, B, C, A, B, C, ...
     cycle(('A')) -> A, A, A, ...
     """
-    while True:
-        for item in iterable:
-            yield item
+    if len(iterable) == 0:
+        return iterable
+    else:
+        while True:
+            for item in iterable:
+                yield item
 
 def repeat(value, repeats=1, depth=0):
     """
