@@ -7,6 +7,8 @@ def count(start=0, step=1):
     count(10, 3) -> 10, 13, 16, ...
     count(0, 0) -> 0, 0, 0, ...
     """
+    yield start
+
     while True:
         yield start + step
         start += step
@@ -50,7 +52,7 @@ def product(*iterables):
     """
     pass
 
-def permutations(iterable, length=len(iterable)):
+def permutations(iterable, length):
     """
     Return all permutations of iterable.
     Order of elements is important.
