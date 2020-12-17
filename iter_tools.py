@@ -1,3 +1,10 @@
+"""
+Alternative for a library itertools
+Available functions: count(), cycle(),
+repeat(), product(), permutations(),
+combinations(), combinations_with_replacement()
+"""
+
 def count(start=0, step=1):
     """
     Return iterable object of endless cycle.
