@@ -65,18 +65,14 @@ def repeat_test(value, repeats: int) -> list:
     1000
     >>> repeat_test('ABC', 3)
     ['ABC', 'ABC', 'ABC']
-    >>> repeat_test('aBcDhIj', 5)
-    ['aBcDhIj', 'aBcDhIj', 'aBcDhIj', 'aBcDhIj', 'aBcDhIj']
+    >>> repeat_test('aBcDeHiJ', 5)
+    ['aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ']
     >>> repeat_test('test', 0)
     []
     >>> repeat_test('', 1)
     ['']
     """
-    sequence = []
-
-    for value in iter_tools.repeat(value, repeats):
-        sequence.append(value)
-    return sequence
+    return list(iter_tools.repeat(value, repeats))
 
 
 def product_test(iterable, repeat: int) -> list:
