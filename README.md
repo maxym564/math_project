@@ -7,8 +7,7 @@
 Автори проєкту: Цалик Михайло-Маркіян, Середович Максим, Музичук Теодор, Димарчук Данило, Забульський Андрій
 
 Кожен член команди вніс вклад у розробку модуля:
-Маркіян: functions count, cycle, repeat and module with tests;
+Маркіян: functions count, cycle, product, repeat and module with tests;
 Максим: functions permutations and combinations;
-Somebody: function products;
 Somebody: function combinations_with_replacement;
 Somebody: report.

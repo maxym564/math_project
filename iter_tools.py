@@ -23,6 +23,7 @@ def count(start=0, step=1):
             yield start + step
             start += step
 
+
 def cycle(iterable):
     """
     Return endless iterator with values
@@ -40,6 +41,7 @@ def cycle(iterable):
             for item in iterable:
                 yield item
 
+
 def repeat(value, repeats=1, depth=0):
     """
     Return endless iterator with
@@ -55,17 +57,45 @@ def repeat(value, repeats=1, depth=0):
         yield value
         depth += 1
 
-def product(*iterables):
+
+def product(*iterables, repeat=2):
     """
     Return generator of Cartesian product
     of all elements.
 
     Usage:
-    ...
+    product(*[1, 2]) -> [(1, 1), (1, 2), (2, 1), (2, 2)]
+    product(*(1, 2)) -> [(1, 1), (1, 2), (2, 1), (2, 2)]
+    product(*'AB') -> [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
     """
-    pass
+    el_lst = []
+    counter = 2
 
-def permutations(iterable, length):
+    if repeat < 2:
+        for el in iterables:
+            yield tuple(el)
+        return None
+
+    for el in iterables:
+        for subel in iterables:
+            el_lst.append([el, subel])
+
+    while counter != repeat:
+        new_lst = []
+        for subel in iterables:
+            for ind in range(len(el_lst)):
+                new_lst.append(el_lst[ind] + [subel])
+
+        el_lst = new_lst
+        counter += 1
+
+    el_lst = sorted(el_lst, key=lambda lst: lst)
+
+    for el in el_lst:
+        yield tuple(el)
+
+
+def permutations(iterable, length=None):
     """
     Return all permutations of iterable.
     Order of elements is important.
@@ -74,6 +104,7 @@ def permutations(iterable, length):
     ...
     """
     pass
+
 
 def combinations(iterable, n: int):
     """
@@ -85,6 +116,7 @@ def combinations(iterable, n: int):
     ...
     """
     pass
+
 
 def combinations_with_replacement(iterable, n: int):
     """
