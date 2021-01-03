@@ -7,7 +7,7 @@ combinations(), combinations_with_replacement()
 
 def count(start=0, step=1):
     """
-    Return iterable object of endless cycle.
+    Returns iterable object of endless cycle.
 
     Usage:
     count() -> 0, 1, 2, ...
@@ -26,7 +26,7 @@ def count(start=0, step=1):
 
 def cycle(iterable):
     """
-    Return endless iterator with values
+    Returns endless iterator with values
     which are in iterable object.
 
     Usage:
@@ -44,7 +44,7 @@ def cycle(iterable):
 
 def repeat(value, repeats=1, depth=0):
     """
-    Return endless iterator with
+    Returns endless iterator with
     values which are repeated a 
     certain number of times.
 
@@ -60,13 +60,13 @@ def repeat(value, repeats=1, depth=0):
 
 def product(*iterables, repeat=2):
     """
-    Return generator of Cartesian product
+    Returns generator of Cartesian product
     of all elements.
 
     Usage:
-    product(*[1, 2]) -> [(1, 1), (1, 2), (2, 1), (2, 2)]
-    product(*(1, 2)) -> [(1, 1), (1, 2), (2, 1), (2, 2)]
-    product(*'AB') -> [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
+    product(*[1, 2]) -> (1, 1), (1, 2), (2, 1), (2, 2)
+    product(*(1, 2)) -> (1, 1), (1, 2), (2, 1), (2, 2)
+    product(*'AB') -> ('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')
     """
     el_lst = []
     counter = 2
@@ -97,7 +97,7 @@ def product(*iterables, repeat=2):
 
 def permutations(iterable, length=None):
     """
-    Return all permutations of iterable.
+    Returns all permutations of iterable.
     Order of elements is important.
 
     Usage:
@@ -106,21 +106,41 @@ def permutations(iterable, length=None):
     pass
 
 
-def combinations(iterable, n: int):
+def combinations(iterable, r: int):
     """
-    Return all combinations of iterable with n elements.
-    No matter what order of elements it is.
-    Elements are sorted.
+    Returns the generator with all possible combinations
+    without repetitions from elements of an array on r.
 
     Usage:
-    ...
+    combinations('abc', 2) -> ab, ac, bc
     """
-    pass
+    area = tuple(iterable)
+    n = len(area)
+    variants = list(range(r))
+
+    if r > n:
+        return None
+
+    yield tuple(area[i] for i in range(r))
+
+    while True:
+        for i in reversed(range(r)):
+            if variants[i] != n - r + i:
+                break
+        else:
+            return None
+
+        variants[i] = variants[i] + 1
+
+        for j in range(i+1, r):
+            variants[j] = variants[j-1] + 1
+
+        yield tuple(area[i] for i in variants)
 
 
 def combinations_with_replacement(iterable, n: int):
     """
-    Return all combinations of iterable with n elements.
+    Returns all combinations of iterable with n elements.
     Elements could be repeated.
     Elements are sorted.
 
