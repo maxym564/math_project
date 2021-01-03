@@ -7,7 +7,7 @@ import iter_tools
 
 def count_test(start: int, step: int, limit: int) -> list:
     """
-    Return a sequence from a start number
+    Returns a sequence from a start number
     to limit with certain step.
 
     >>> len(count_test(1, 1, 10**6))
@@ -33,7 +33,7 @@ def count_test(start: int, step: int, limit: int) -> list:
 
 def cycle_test(iterable, limit: int) -> list:
     """
-    Return a sequence with limited length.
+    Returns a sequence with limited length.
 
     >>> cycle_test('ABC', 9)
     ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C']
@@ -58,7 +58,7 @@ def cycle_test(iterable, limit: int) -> list:
 
 def repeat_test(value, repeats: int) -> list:
     """
-    Return a sequence with n-time
+    Returns a sequence with n-time
     repeated value.
 
     >>> len(repeat_test('ABC', 1000))
@@ -77,7 +77,7 @@ def repeat_test(value, repeats: int) -> list:
 
 def product_test(iterable, repeat: int) -> list:
     """
-    Return a list with Cartesian product of
+    Returns a list with Cartesian product of
     elements of iterable.
 
     >>> len(product_test([1, 2, 3], 2))
@@ -101,11 +101,23 @@ def permutations_test(iterable, limit: int) -> list:
     pass
 
 
-def combinations_test(iterable, limit: int) -> list:
+def combinations_test(iterable, r: int) -> list:
     """
+    Returns a list with all combinations of iterable
+    which contain r elements.
 
+    >>> combinations_test('abc', 2)
+    [('a', 'b'), ('a', 'c'), ('b', 'c')]
+    >>> combinations_test(['a', 'b', 'c'], 2)
+    [('a', 'b'), ('a', 'c'), ('b', 'c')]
+    >>> combinations_test(['a', 'b', 'c'], 3)
+    [('a', 'b', 'c')]
+    >>> combinations_test(['a', 'b', 'c'], 1)
+    [('a',), ('b',), ('c',)]
+    >>> combinations_test('abc', 4)
+    []
     """
-    pass
+    return list(iter_tools.combinations(iterable, r))
 
 
 def combinations_with_replacement_test(iterable, limit: int) -> list:
