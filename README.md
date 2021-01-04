@@ -9,5 +9,6 @@
 Кожен член команди вніс вклад у розробку модуля:
 Маркіян: functions count, cycle, product, repeat and module with tests;
 Максим: functions permutations and combinations;
-Somebody: function combinations_with_replacement;
+Данило: function combinations_with_replacement;
+Андрій і Теодор: all functions debugging;
 Somebody: report.

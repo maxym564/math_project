@@ -94,9 +94,21 @@ def product_test(iterable, repeat: int) -> list:
     return list(iter_tools.product(*iterable, repeat=repeat))
 
 
-def permutations_test(iterable, limit: int) -> list:
+def permutations_test(iterable, n: int) -> list:
     """
+    Returns a list with all combinations of iterable which contains n elements.
+    Order is important.
 
+    >>> permutations_test('abc', 2)
+
+    >>> permutations_test(['a', 'b', 'c'], 2)
+
+    >>> permutations_test([['a'], ['b']], 3)
+
+    >>> permutations_test('abc', 1)
+
+    >>> permutations_test(['a', 'b', 'c'], 0)
+    
     """
     pass
 
@@ -120,11 +132,24 @@ def combinations_test(iterable, r: int) -> list:
     return list(iter_tools.combinations(iterable, r))
 
 
-def combinations_with_replacement_test(iterable, limit: int) -> list:
+def combinations_with_replacement_test(iterable, n: int) -> list:
     """
+    Returns a list with all combinations of iterable which contains n elements
+    where elements could be repeated.
+    Order is not important.
 
+    >>> combinations_with_replacement_test('abc', 2)
+    [('a', 'a'), ('a', 'b'), ('a', 'c'), ('b', 'b'), ('b', 'c'), ('c', 'c')]
+    >>> combinations_with_replacement_test(['a', 'b'], 3)
+    [('a', 'a', 'a'), ('a', 'a', 'b'), ('a', 'b', 'b'), ('b', 'b', 'b')]
+    >>> combinations_with_replacement_test([['a'], ['b']], 3)
+    [(['a'], ['a'], ['a']), (['a'], ['a'], ['b']), (['a'], ['b'], ['b']), (['b'], ['b'], ['b'])]
+    >>> combinations_with_replacement_test('abc', 1)
+    [('a',), ('b',), ('c',)]
+    >>> combinations_with_replacement_test('abc', 0)
+    []
     """
-    pass
+    return list(iter_tools.combinations_with_replacement(iterable, n))
 
 
 if __name__ == "__main__":

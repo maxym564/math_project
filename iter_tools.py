@@ -73,7 +73,7 @@ def product(*iterables, repeat=2):
 
     if repeat < 2:
         for el in iterables:
-            yield tuple(el)
+            yield tuple(str(el))
         return None
 
     for el in iterables:
@@ -89,7 +89,7 @@ def product(*iterables, repeat=2):
         el_lst = new_lst
         counter += 1
 
-    el_lst = sorted(el_lst, key=lambda lst: lst)
+    el_lst = sorted(el_lst)
 
     for el in el_lst:
         yield tuple(el)
@@ -110,6 +110,7 @@ def combinations(iterable, r: int):
     """
     Returns the generator with all possible combinations
     without repetitions from elements of an array on r.
+    Order is not important.
 
     Usage:
     combinations('abc', 2) -> ab, ac, bc
@@ -143,8 +144,20 @@ def combinations_with_replacement(iterable, n: int):
     Returns all combinations of iterable with n elements.
     Elements could be repeated.
     Elements are sorted.
+    Order is not important.
 
     Usage:
-    ...
+    combinations_with_replacement(list(range(2)), 2) -> (0, 0), (0, 1), (1, 1)
     """
-    pass
+    if n == 0:
+        return []
+
+    replacement_lst = list(product(*iterable, repeat=n))
+    replacement_lst = list(map(sorted, sorted(replacement_lst)))
+
+    for item in reversed(replacement_lst):
+        if replacement_lst.count(item) > 1:
+            replacement_lst.remove(item)
+
+    for el in sorted(replacement_lst):
+        yield tuple(el)
