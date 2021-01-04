@@ -4,8 +4,10 @@ Available functions: count(), cycle(),
 repeat(), product(), permutations(),
 combinations(), combinations_with_replacement()
 """
+from typing import Generator, Iterator, Iterable
 
-def count(start=0, step=1):
+
+def count(start=0, step=1) -> Iterator:
     """
     Returns iterable object of endless cycle.
 
@@ -24,7 +26,7 @@ def count(start=0, step=1):
             start += step
 
 
-def cycle(iterable):
+def cycle(iterable: Iterable) -> Iterator:
     """
     Returns endless iterator with values
     which are in iterable object.
@@ -42,7 +44,7 @@ def cycle(iterable):
                 yield item
 
 
-def repeat(value, repeats=1, depth=0):
+def repeat(value, repeats=1, depth=0) -> Iterator:
     """
     Returns endless iterator with
     values which are repeated a 
@@ -58,7 +60,7 @@ def repeat(value, repeats=1, depth=0):
         depth += 1
 
 
-def product(*iterables, repeat=2):
+def product(*iterables: Iterable, repeat=2) -> Generator:
     """
     Returns generator of Cartesian product
     of all elements.
@@ -95,7 +97,7 @@ def product(*iterables, repeat=2):
         yield tuple(el)
 
 
-def permutations(iterable, length=None):
+def permutations(iterable: Iterable, length=None) -> Generator:
     """
     Returns all permutations of iterable.
     Order of elements is important.
@@ -106,7 +108,7 @@ def permutations(iterable, length=None):
     pass
 
 
-def combinations(iterable, r: int):
+def combinations(iterable: Iterable, r: int) -> Generator:
     """
     Returns the generator with all possible combinations
     without repetitions from elements of an array on r.
@@ -139,7 +141,7 @@ def combinations(iterable, r: int):
         yield tuple(area[i] for i in variants)
 
 
-def combinations_with_replacement(iterable, n: int):
+def combinations_with_replacement(iterable: Iterable, n: int) -> Generator:
     """
     Returns all combinations of iterable with n elements.
     Elements could be repeated.
