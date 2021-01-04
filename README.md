@@ -2,7 +2,7 @@
 
 Ідеєю нашого проєкту є створення власної альтернативи Python бібліотеки itertools
 
-Для його реалізації було використано знання з дискретної математики, а саме комбінаторні знання (розміщення елементів, комбінації, комбінації з повтореннями)
+Для його реалізації було використано знання дискретної математики, а саме комбінаторні знання (розміщення елементів, комбінації, комбінації з повтореннями)
 
 Готові для використання функції count(), cycle(),
 repeat(), product(), permutations(),
@@ -21,5 +21,4 @@ combinations(), combinations_with_replacement().
 Маркіян: functions count, cycle, product, repeat and module with tests;
 Максим: functions permutations and combinations;
 Данило: function combinations_with_replacement;
-Андрій і Теодор: all functions debugging;
-Somebody: report.
+Андрій і Теодор: all functions debugging.
