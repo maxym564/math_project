@@ -1,7 +1,6 @@
 """
 Tests for iter_tools module
 """
-
 import iter_tools
 
 
@@ -100,17 +99,17 @@ def permutations_test(iterable, n: int) -> list:
     Order is important.
 
     >>> permutations_test('abc', 2)
-
+    [('a', 'b'), ('b', 'a'), ('a', 'c'), ('c', 'a'), ('b', 'c'), ('c', 'b')]
     >>> permutations_test(['a', 'b', 'c'], 2)
-
+    [('a', 'b'), ('b', 'a'), ('a', 'c'), ('c', 'a'), ('b', 'c'), ('c', 'b')]
     >>> permutations_test([['a'], ['b']], 3)
-
+    []
     >>> permutations_test('abc', 1)
-
+    [('a',), ('b',), ('c',)]
     >>> permutations_test(['a', 'b', 'c'], 0)
-
+    [()]
     """
-    pass
+    return list(iter_tools.permutations(iterable, n))
 
 
 def combinations_test(iterable, r: int) -> list:
