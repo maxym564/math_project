@@ -55,7 +55,7 @@ def cycle_test(iterable, limit: int) -> list:
     return sequence
 
 
-def repeat_test(value, repeats: int) -> list:
+def repeat_test(value, limit: int) -> list:
     """
     Returns a sequence with n-time
     repeated value.
@@ -71,7 +71,11 @@ def repeat_test(value, repeats: int) -> list:
     >>> repeat_test('', 1)
     ['']
     """
-    return list(iter_tools.repeat(value, repeats))
+    items = []
+
+    while len(items) != limit:
+        items.append(next(iter_tools.repeat(value)))
+    return items
 
 
 def product_test(iterable, repeat: int) -> list:
@@ -149,6 +153,43 @@ def combinations_with_replacement_test(iterable, n: int) -> list:
     []
     """
     return list(iter_tools.combinations_with_replacement(iterable, n))
+
+
+assert len(count_test(1, 1, 10**6)) == 1000000
+assert len(count_test(1, 1, 10**2)) == 100
+assert count_test(0, 10, 100) == [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+assert count_test(0, 1, 10) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+assert count_test(0, 0, 0) == [0]
+assert cycle_test('ABC', 9) == ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C']
+assert cycle_test(['A', 'B', 'C'], 9) == ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C']
+assert cycle_test(['A', 'B', 'C'], 3) == ['A', 'B', 'C']
+assert cycle_test('ITERABLE', 8) == ['I', 'T', 'E', 'R', 'A', 'B', 'L', 'E']
+assert cycle_test('', 1) == []
+assert len(repeat_test('ABC', 1000)) == 1000
+assert repeat_test('ABC', 3) == ['ABC', 'ABC', 'ABC']
+assert repeat_test('aBcDeHiJ', 5) == ['aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ']
+assert repeat_test('test', 0) == []
+assert repeat_test('', 1) == ['']
+assert len(product_test([1, 2, 3], 2)) == 9
+assert product_test('AB', 2) == [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
+assert product_test(['A', 'B'], 2) == [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
+assert (product_test(['A', 'B', 'C'], 2) == product_test('ABC', 2)) == True
+assert product_test([], 2) == []
+assert permutations_test('abc', 2) == [('a', 'b'), ('b', 'a'), ('a', 'c'), ('c', 'a'), ('b', 'c'), ('c', 'b')]
+assert permutations_test(['a', 'b', 'c'], 2) == [('a', 'b'), ('b', 'a'), ('a', 'c'), ('c', 'a'), ('b', 'c'), ('c', 'b')]
+assert permutations_test([['a'], ['b']], 3) == []
+assert permutations_test('abc', 1) == [('a',), ('b',), ('c',)]
+assert permutations_test(['a', 'b', 'c'], 0) == [()]
+assert combinations_test('abc', 2) == [('a', 'b'), ('a', 'c'), ('b', 'c')]
+assert combinations_test(['a', 'b', 'c'], 2) == [('a', 'b'), ('a', 'c'), ('b', 'c')]
+assert combinations_test(['a', 'b', 'c'], 3) == [('a', 'b', 'c')]
+assert combinations_test(['a', 'b', 'c'], 1) == [('a',), ('b',), ('c',)]
+assert combinations_test('abc', 4) == []
+assert combinations_with_replacement_test('abc', 2) == [('a', 'a'), ('a', 'b'), ('a', 'c'), ('b', 'b'), ('b', 'c'), ('c', 'c')]
+assert combinations_with_replacement_test(['a', 'b'], 3) == [('a', 'a', 'a'), ('a', 'a', 'b'), ('a', 'b', 'b'), ('b', 'b', 'b')]
+assert combinations_with_replacement_test([['a'], ['b']], 3) == [(['a'], ['a'], ['a']), (['a'], ['a'], ['b']), (['a'], ['b'], ['b']), (['b'], ['b'], ['b'])]
+assert combinations_with_replacement_test('abc', 1) == [('a',), ('b',), ('c',)]
+assert combinations_with_replacement_test('abc', 0) == []
 
 
 if __name__ == "__main__":

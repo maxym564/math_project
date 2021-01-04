@@ -44,20 +44,18 @@ def cycle(iterable: Iterable) -> Iterator:
                 yield item
 
 
-def repeat(value, repeats=1) -> Iterator:
+def repeat(value, repeats=None) -> Iterator:
     """
     Returns endless iterator with
     values which are repeated a 
     certain number of times.
 
     Usage:
-    repeat(3, 3) -> 3, 3, 3
-    repeat('A', 5) -> A, A, A, A, A
-    repeat(0) -> 0
+    repeat(3) -> 3, 3, 3, ...
+    repeat('A', 5) -> A, A, A, ...
+    repeat(0) -> 0, ...
     """
-    depth=0
-
-    while depth != repeats:
+    while True:
         yield value
         depth += 1
 
