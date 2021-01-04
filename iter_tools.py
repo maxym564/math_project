@@ -44,7 +44,7 @@ def cycle(iterable: Iterable) -> Iterator:
                 yield item
 
 
-def repeat(value, repeats=None) -> Iterator:
+def repeat(value) -> Iterator:
     """
     Returns endless iterator with
     values which are repeated a 
@@ -52,12 +52,11 @@ def repeat(value, repeats=None) -> Iterator:
 
     Usage:
     repeat(3) -> 3, 3, 3, ...
-    repeat('A', 5) -> A, A, A, ...
+    repeat('A') -> A, A, A, ...
     repeat(0) -> 0, ...
     """
     while True:
         yield value
-        depth += 1
 
 
 def product(*iterables: Iterable, repeat=2) -> Generator:
