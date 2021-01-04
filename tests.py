@@ -108,7 +108,7 @@ def permutations_test(iterable, n: int) -> list:
     >>> permutations_test('abc', 1)
 
     >>> permutations_test(['a', 'b', 'c'], 0)
-    
+
     """
     pass
 
