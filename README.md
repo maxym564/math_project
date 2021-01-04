@@ -18,7 +18,9 @@ combinations(), combinations_with_replacement().
 Автори проєкту: Цалик Михайло-Маркіян, Середович Максим, Музичук Теодор, Димарчук Данило, Забульський Андрій.
 
 Кожен член команди вніс вклад у розробку модуля:
-Маркіян: functions count, cycle, product, repeat and module with tests;
+Маркіян: functions count, cycle, repeat and module with tests;
+Теодор: function product.
 Максим: functions permutations and combinations;
 Данило: function combinations_with_replacement;
 Андрій і Теодор: all functions debugging.
+https://docs.google.com/spreadsheets/d/1VZrXTDUh_A3Mz99TJJN_QJPJ3ax_ZaWpQjI8NE6C0sI/edit#gid=0
