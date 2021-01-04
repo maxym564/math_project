@@ -3,7 +3,6 @@ Tests for iter_tools module
 """
 import iter_tools
 
-
 def count_test(start: int, step: int, limit: int) -> list:
     """
     Returns a sequence from a start number
@@ -78,24 +77,23 @@ def repeat_test(value, limit: int) -> list:
     return items
 
 
-def product_test(iterable, repeat: int) -> list:
+def product_test(*args, repeat: int) -> list:
     """
     Returns a list with Cartesian product of
     elements of iterable.
 
-    >>> len(product_test([1, 2, 3], 2))
+    >>> len(product_test([1, 2, 3], repeat = 2))
     9
-    >>> product_test('AB', 2)
+    >>> product_test('AB', repeat = 2)
     [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
-    >>> product_test(['A', 'B'], 2)
+    >>> product_test(['A', 'B'], repeat = 2)
     [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
-    >>> product_test(['A', 'B', 'C'], 2) == product_test('ABC', 2)
+    >>> product_test(['A', 'B', 'C'], repeat = 2) == product_test('ABC', repeat = 2)
     True
-    >>> product_test([], 2)
+    >>> product_test([], repeat = 2)
     []
     """
-    return list(iter_tools.product(*iterable, repeat=repeat))
-
+    return list(iter_tools.product(*args, repeat=repeat))
 
 def permutations_test(iterable, n: int) -> list:
     """
@@ -170,11 +168,11 @@ assert repeat_test('ABC', 3) == ['ABC', 'ABC', 'ABC']
 assert repeat_test('aBcDeHiJ', 5) == ['aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ', 'aBcDeHiJ']
 assert repeat_test('test', 0) == []
 assert repeat_test('', 1) == ['']
-assert len(product_test([1, 2, 3], 2)) == 9
-assert product_test('AB', 2) == [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
-assert product_test(['A', 'B'], 2) == [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
-assert (product_test(['A', 'B', 'C'], 2) == product_test('ABC', 2)) == True
-assert product_test([], 2) == []
+assert len(product_test([1, 2, 3], repeat = 2)) == 9
+assert product_test('AB', repeat = 2) == [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
+assert product_test(['A', 'B'], repeat = 2) == [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
+assert (product_test(['A', 'B', 'C'], repeat = 2) == product_test('ABC', repeat = 2)) == True
+assert product_test([], repeat = 2) == []
 assert permutations_test('abc', 2) == [('a', 'b'), ('b', 'a'), ('a', 'c'), ('c', 'a'), ('b', 'c'), ('c', 'b')]
 assert permutations_test(['a', 'b', 'c'], 2) == [('a', 'b'), ('b', 'a'), ('a', 'c'), ('c', 'a'), ('b', 'c'), ('c', 'b')]
 assert permutations_test([['a'], ['b']], 3) == []

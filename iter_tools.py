@@ -47,7 +47,7 @@ def cycle(iterable: Iterable) -> Iterator:
 def repeat(value) -> Iterator:
     """
     Returns endless iterator with
-    values which are repeated a 
+    values which are repeated a
     certain number of times.
 
     Usage:
@@ -59,41 +59,24 @@ def repeat(value) -> Iterator:
         yield value
 
 
-def product(*iterables: Iterable, repeat=2) -> Generator:
+def product(*args: Iterable, repeat=1) -> Generator:
     """
     Returns generator of Cartesian product
     of all elements.
 
     Usage:
-    product(*[1, 2]) -> (1, 1), (1, 2), (2, 1), (2, 2)
-    product(*(1, 2)) -> (1, 1), (1, 2), (2, 1), (2, 2)
-    product(*'AB') -> ('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')
+    product("ab", (1,2)) -> ("a", 1), ("a", 2), ("b", 1), ("b", 2)
+    product([1, 2], repeat = 2) -> (1, 1), (1, 2), (2, 1), (2, 2)
     """
-    el_lst = []
-    counter = 2
+    tuples = list(map(tuple, args)) * repeat
 
-    if repeat < 2:
-        for el in iterables:
-            yield tuple(str(el))
-        return None
+    result = [[]]
 
-    for el in iterables:
-        for subel in iterables:
-            el_lst.append([el, subel])
+    for element in tuples:
+        result = [x + [y] for x in result for y in element]
 
-    while counter != repeat:
-        new_lst = []
-        for subel in iterables:
-            for ind in range(len(el_lst)):
-                new_lst.append(el_lst[ind] + [subel])
-
-        el_lst = new_lst
-        counter += 1
-
-    el_lst = sorted(el_lst)
-
-    for el in el_lst:
-        yield tuple(el)
+    for element in result:
+        yield tuple(element)
 
 
 def permutations(iterable: Iterable, r= None) -> Generator:
@@ -181,7 +164,7 @@ def combinations_with_replacement(iterable: Iterable, n: int) -> Generator:
     if n == 0:
         return []
 
-    replacement_lst = list(product(*iterable, repeat=n))
+    replacement_lst = list(product(iterable, repeat=n))
     replacement_lst = list(map(sorted, sorted(replacement_lst)))
 
     for item in reversed(replacement_lst):
